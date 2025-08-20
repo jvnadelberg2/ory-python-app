@@ -4,26 +4,43 @@ Python demo that logs in to Ory Cloud and prints a session token and identity ID
 
 ## Requirements
 - Python 3.10+
-- requests library
-- Ory Cloud project (see BASE_URL, IDENT, PASS in ory_login.py)
+- `requests` library
+- Ory Cloud project (see `BASE_URL`, `IDENT`, `PASS` in `ory_login.py`)
 
-## One-time setup
-python3 -m pip install --user -r requirements.txt
+## Environment
+
+\`\`\`bash
+export BASE_URL=https://<your-project-slug>.projects.oryapis.com
+export IDENT=<your-identity-username>
+export PASS=<your-password>
+\`\`\`
 
 ## Run
-python3 ory_login.py
 
-Expected output:
-token: ory_st_…
-identity_id: <uuid>
+\`\`\`bash
+python3 ory_login.py
+\`\`\`
+
+Expected output includes a session token (truncated for readability) and the identity ID.
+
+## VS Code
+Use a launch config that sets `BASE_URL`, `IDENT`, and `PASS`.
+
+## GitHub
+- Setup Python and cache pip
+- Store secrets (`BASE_URL`, `IDENT`, `PASS`) in GitHub Actions → Settings → Secrets
+- Run `python ory_login.py` with sample args in CI
 
 ## Project structure
-- ory_login.py — demo script
-- requirements.txt — dependencies (requests only)
-- docs/ory-python-demo-architecture.svg — architecture diagram
-
-## Diagram
-![Ory Python Demo Architecture](docs/ory-python-demo-architecture.svg)
+- `ory_login.py` – demo script with login and whoami calls
+- `requirements.txt` – Python dependencies
+- `README.md` – usage guide
+- `ARCHITECTURE.md` – explanation of flow and diagram
+- `SECURITY.md` – security policy
+- `LICENSE` – MIT license
 
 ## License
-MIT
+MIT License. See [LICENSE](LICENSE) for details.
+
+## Security
+For information about handling secrets and security considerations, see [SECURITY.md](SECURITY.md).
