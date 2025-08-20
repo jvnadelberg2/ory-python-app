@@ -9,41 +9,18 @@ Minimal Python demo that calls the Ory Permission API to check access for a subj
 
 ## Requirements
 - Python 3.10+
-- See shared prerequisites in `docs/PREREQS.md`
+- An Ory Network project or the public playground
+- A personal access token with permission API access
+- Environment variables:
+  - `ORY_BASE_URL` (default: `https://playground.projects.oryapis.com`)
+  - `ORY_TOKEN` (required)
 
 ## Quickstart
+
+```bash
 git clone <your-repo-url> ory-python-demo
 cd ory-python-demo
-python3 -m venv .venv
-. .venv/bin/activate
-pip install ory-client
-
-## Environment
+pip install --user ory-client
 export ORY_BASE_URL=https://playground.projects.oryapis.com
 export ORY_TOKEN=<personal_access_token>
-
-## Run
 python check_permission.py --namespace docs --object page:123 --relation viewer --subject user:alice --max-depth 1
-
-Expected output is a JSON-like structure including the decision field.
-
-## VS Code
-Use a launch config that selects `.venv` and sets `ORY_BASE_URL` and `ORY_TOKEN`.
-
-## GitHub
-- Setup Python and cache pip
-- Create venv and install `ory-client`
-- Run `python check_permission.py` with sample args
-- Store `ORY_TOKEN` in Actions secrets
-
-## Project structure
-- `check_permission.py`
-- `docs/PREREQS.md`
-- `docs/ory-python-demo-architecture.svg`
-
-## Diagram
-## Diagram
-![Ory Python Demo Architecture](docs/ory-python-demo-architecture.svg)
-
-## License
-MIT
