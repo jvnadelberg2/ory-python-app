@@ -42,7 +42,8 @@ Use a launch config that selects `.venv` and sets `ORY_BASE_URL` and `ORY_TOKEN`
 - `docs/ory-python-demo-architecture.svg`
 
 ## Diagram
-See `docs/ory-python-demo-architecture.svg`.
+## Diagram
+![Ory Python Demo Architecture](docs/ory-python-demo-architecture.svg)
 
 ## License
 MIT
