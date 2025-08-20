@@ -6,3 +6,5 @@ lib64/
 share/
 pyvenv.cfg
 .Python
+__pycache__/
+*.pyc
