@@ -1,33 +1,26 @@
 # ory-python-demo
 
-Minimal Python demo that calls the Ory Permission API to check access for a subject on an object in a namespace.
-
-## What it does
-- Uses `ory-client` with `ORY_BASE_URL` and personal access token `ORY_TOKEN`
-- Calls `check_permission` with `namespace`, `object`, `relation`, `subject_id`
-- Prints the decision result
+Python demo that logs in to Ory Cloud and prints a session token and identity ID.
 
 ## Requirements
 - Python 3.10+
-- Ory account and a Personal Access Token (PAT)
+- requests library
+- Ory Cloud project (see BASE_URL, IDENT, PASS in ory_login.py)
 
-## Authentication
-- Create a PAT in the Ory Console under Account → Personal Access Tokens
-- Copy the token and set it as `ORY_TOKEN` in your shell
+## One-time setup
+python3 -m pip install --user -r requirements.txt
 
-## Environment variables
-- `ORY_BASE_URL` (default: `https://playground.projects.oryapis.com`)
-- `ORY_TOKEN` (required)
+## Run
+python3 ory_login.py
 
-## Quickstart (no venv, throwaway)
-    pip install --user ory-client
-    export ORY_BASE_URL=https://playground.projects.oryapis.com
-    export ORY_TOKEN=<personal_access_token>
-    python check_permission.py --namespace docs --object page:123 --relation viewer --subject user:alice --max-depth 1
+Expected output:
+token: ory_st_…
+identity_id: <uuid>
 
-## Project files
-- `check_permission.py`
-- `docs/ory-python-demo-architecture.svg`
+## Project structure
+- ory_login.py — demo script
+- requirements.txt — dependencies (requests only)
+- docs/ory-python-demo-architecture.svg — architecture diagram
 
 ## Diagram
 ![Ory Python Demo Architecture](docs/ory-python-demo-architecture.svg)
