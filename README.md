@@ -1,46 +1,67 @@
 # ory-python-demo
 
-Python demo that logs in to Ory Cloud and prints a session token and identity ID.
+Python demo that logs in to Ory Network and validates a session.
+
+## Purpose
+
+This project demonstrates two approaches:
+
+1. Login via REST API using `requests`
+   - Calls /self-service/login/api to start a flow.
+   - Calls /self-service/login?flow=<id> to submit credentials.
+   - Returns a session_token and identity.id.
+
+2. Validate session via SDK using `ory-client`
+   - Calls FrontendApi.to_session(x_session_token=...).
+   - Wraps the REST endpoint /sessions/whoami.
 
 ## Requirements
+
 - Python 3.10+
-- `requests` library
-- Ory Cloud project (see `BASE_URL`, `IDENT`, `PASS` in `ory_login.py`)
+- Packages listed in requirements.txt:
+  - requests
+  - ory-client
+
+## Setup
+
+Clone this repo and create a virtual environment:
+
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
 ## Environment
 
-\`\`\`bash
-export BASE_URL=https://<your-project-slug>.projects.oryapis.com
-export IDENT=<your-identity-username>
-export PASS=<your-password>
-\`\`\`
+Set the following variables before running. Do not include < > in the values.
+
+    export BASE_URL="https://<project-slug>.projects.oryapis.com"
+    export IDENT="your-username"
+    export PASS="your-password"
+
+Example:
+
+    export BASE_URL="https://myproj-abc123.projects.oryapis.com"
+    export IDENT="jonnadelberg"
+    export PASS="example-password"
 
 ## Run
 
-\`\`\`bash
-python3 ory_login.py
-\`\`\`
+    python ory_login.py
 
-Expected output includes a session token (truncated for readability) and the identity ID.
+Expected output (values truncated for safety):
 
-## VS Code
-Use a launch config that sets `BASE_URL`, `IDENT`, and `PASS`.
-
-## GitHub
-- Setup Python and cache pip
-- Store secrets (`BASE_URL`, `IDENT`, `PASS`) in GitHub Actions → Settings → Secrets
-- Run `python ory_login.py` with sample args in CI
+    token: ory_st_ABC123…
+    identity_id: 8f268dd1-3ec3-43ed-83f3-cfd469fb8906
 
 ## Project structure
-- `ory_login.py` – demo script with login and whoami calls
-- `requirements.txt` – Python dependencies
-- `README.md` – usage guide
-- `ARCHITECTURE.md` – explanation of flow and diagram
-- `SECURITY.md` – security policy
-- `LICENSE` – MIT license
+
+- ory_login.py — demo script (REST login + SDK whoami)
+- requirements.txt — dependencies
+- README.md — usage guide
+- docs/ARCHITECTURE.md — architecture overview
+- docs/SECURITY.md — security notes
+- LICENSE — MIT license
 
 ## License
-MIT License. See [LICENSE](LICENSE) for details.
 
-## Security
-For information about handling secrets and security considerations, see [SECURITY.md](SECURITY.md).
+MIT License. See LICENSE for details.
